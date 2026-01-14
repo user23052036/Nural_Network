@@ -1,0 +1,1 @@
+learning nural network from scratch from youtube playlist by Andrej Karpathy
