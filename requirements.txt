@@ -1,2 +1,7 @@
-numpy
+pandas
+kaggle
+ipykernel
+tensorflow==2.21.0
 matplotlib
+numpy
+seaborn
