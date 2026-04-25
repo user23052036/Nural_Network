@@ -1,7 +1,7 @@
 pandas
 kaggle
 ipykernel
-tensorflow==2.21.0
+tensorflow
 matplotlib
 numpy
 seaborn
