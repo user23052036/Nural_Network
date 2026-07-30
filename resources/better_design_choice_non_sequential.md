@@ -18,13 +18,13 @@ Let’s rebuild the intuition properly.
 
 After all convolution + pooling operations:
 
-```text id="u5nr5f"
+```text
 (6, 6, 512)
 ```
 
 means:
 
-```text id="n3ijuv"
+```text
 height = 6
 width = 6
 channels = 512
@@ -37,13 +37,13 @@ This is NOT:
 
 It is:
 
-```text id="17r11j"
+```text
 512 feature maps
 ```
 
 Each feature map is:
 
-```text id="cvvqqv"
+```text
 6 × 6
 ```
 
@@ -57,7 +57,7 @@ Imagine ONE channel detects:
 
 Then its feature map may look like:
 
-```text id="kjf8v8"
+```text
 0 0 1 2 0 0
 0 1 3 5 1 0
 0 2 6 9 3 0
@@ -80,7 +80,7 @@ Small values mean:
 
 Different channels learn different patterns:
 
-```text id="nh4tmv"
+```text
 channel 1   → beard texture
 channel 2   → wrinkles
 channel 3   → eyes
@@ -92,13 +92,13 @@ channel 512 → abstract face pattern
 
 So:
 
-```text id="llyhwu"
+```text
 (6,6,512)
 ```
 
 means:
 
-```text id="z7r4gb"
+```text
 512 different learned facial detectors
 ```
 
@@ -108,20 +108,20 @@ means:
 
 Flatten says:
 
-```text id="ur7u74"
+```text
 "I will preserve EVERY number."
 ```
 
 So:
 
-```text id="xzjlwm"
+```text
 6 × 6 × 512
 = 18432 numbers
 ```
 
 becomes:
 
-```text id="0xxzy0"
+```text
 [....18432 values....]
 ```
 
@@ -131,19 +131,19 @@ becomes:
 
 Then you do:
 
-```python id="0r05j6"
+```python
 Dense(512)
 ```
 
 Dense layer means:
 
-```text id="jlwmce"
+```text
 every input connects to every neuron
 ```
 
 So parameters become:
 
-```text id="rxhxsk"
+```text
 18432 × 512
 ≈ 9.4 million
 ```
@@ -158,20 +158,20 @@ This is why CPU training becomes painful.
 
 GlobalAveragePooling2D says:
 
-```text id="6jn3w8"
+```text
 "I don't care WHERE the feature appeared.
 I only care HOW MUCH the feature appeared overall."
 ```
 
 So for EACH feature map:
 
-```text id="i5v2xe"
+```text
 6×6 → average → 1 number
 ```
 
 Example:
 
-```text id="h32s5f"
+```text
 0 0 1 2 0 0
 0 1 3 5 1 0
 0 2 6 9 3 0
@@ -180,13 +180,13 @@ Example:
 
 average may become:
 
-```text id="icjlwm"
+```text
 2.1
 ```
 
 Meaning:
 
-```text id="2jlwmv"
+```text
 "beard feature detected moderately"
 ```
 
@@ -196,7 +196,7 @@ Meaning:
 
 You had:
 
-```text id="lnkt4u"
+```text
 512 feature maps
 ```
 
@@ -204,7 +204,7 @@ Each becomes ONE number.
 
 So:
 
-```text id="8mppyb"
+```text
 (6,6,512)
 →
 (512,)
@@ -212,7 +212,7 @@ So:
 
 Now model only stores:
 
-```text id="wczjgo"
+```text
 how strongly each feature exists
 ```
 
@@ -227,7 +227,7 @@ you usually do NOT need exact pixel position.
 
 You mainly care about:
 
-```text id="u12xlq"
+```text
 Does beard exist?
 How strong are wrinkles?
 Hair texture?
@@ -236,7 +236,7 @@ Face structure?
 
 NOT:
 
-```text id="89e0x0"
+```text
 Exactly where was wrinkle pixel located?
 ```
 
@@ -248,7 +248,7 @@ So GAP works very well.
 
 You wrote:
 
-```python id="1mw0yv"
+```python
 x = Dense(128)(x)
 ```
 
@@ -265,14 +265,14 @@ Because:
 
 So instead of learning separately twice:
 
-```text id="xjpm3k"
+```text
 feature learning
 feature learning
 ```
 
 we learn once:
 
-```text id="p5v8xa"
+```text
 shared facial understanding
 ```
 
@@ -293,7 +293,7 @@ This reduces:
 
 Your model now works like this:
 
-```text id="2pwlbx"
+```text
 Image
 ↓
 EfficientNet extracts facial patterns
