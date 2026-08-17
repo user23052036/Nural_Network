@@ -392,7 +392,7 @@ That is what allows:
 
 # Visual intuition
 
-```text id="v08l4k"
+```text
 Without activation:
 layer1 → line
 layer2 → line

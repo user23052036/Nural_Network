@@ -10,13 +10,13 @@ DataFrame rows have TWO things:
 
 Example:
 
-```python id="5vgk4y"
+```python
 df
 ```
 
 might look like:
 
-```text id="mofowr"
+```text
    age gender
 0   21   1
 1   30   0
@@ -25,7 +25,7 @@ might look like:
 
 Here:
 
-```text id="1i3m7r"
+```text
 0 1 2
 ```
 
@@ -39,7 +39,7 @@ Not actual data.
 
 Suppose:
 
-```python id="a5d9ng"
+```python
 class0 = df[df['gender'] == 0]
 ```
 
@@ -47,13 +47,13 @@ Now maybe only row 1 matched.
 
 So:
 
-```python id="0a4mh5"
+```python
 class0
 ```
 
 becomes:
 
-```text id="8slyhv"
+```text
    age gender
 1   30   0
 ```
@@ -74,13 +74,13 @@ Because pandas preserves original row labels.
 
 Suppose:
 
-```python id="0wg7ma"
+```python
 train0
 ```
 
 has:
 
-```text id="btf9iz"
+```text
 index:
 1
 5
@@ -89,13 +89,13 @@ index:
 
 and
 
-```python id="4q3g6r"
+```python
 train1
 ```
 
 has:
 
-```text id="n6f02c"
+```text
 index:
 2
 8
@@ -104,13 +104,13 @@ index:
 
 After:
 
-```python id="zzmd5d"
+```python
 pd.concat([train0, train1])
 ```
 
 you get:
 
-```text id="5j45cf"
+```text
 index:
 1
 5
@@ -145,13 +145,13 @@ This tells pandas:
 
 So:
 
-```python id="cbdy1y"
+```python
 pd.concat([train0, train1], ignore_index=True)
 ```
 
 becomes:
 
-```text id="d8lc73"
+```text
 index:
 0
 1
@@ -171,13 +171,13 @@ It does similar work AFTER dataframe creation.
 
 Suppose:
 
-```python id="wj01y2"
+```python
 df
 ```
 
 looks like:
 
-```text id="1v3v2x"
+```text
     age gender
 5    21   1
 9    30   0
@@ -186,13 +186,13 @@ looks like:
 
 Now:
 
-```python id="q1y9ly"
+```python
 df.reset_index()
 ```
 
 gives:
 
-```text id="t7m50r"
+```text
    index age gender
 0   5     21   1
 1   9     30   0
@@ -205,7 +205,7 @@ Old indices moved into a new column called `"index"`.
 
 # Usually we use:
 
-```python id="4n8tca"
+```python
 df.reset_index(drop=True)
 ```
 
@@ -217,7 +217,7 @@ drop old index completely
 
 Result:
 
-```text id="7o4u08"
+```text
    age gender
 0   21   1
 1   30   0
@@ -232,13 +232,13 @@ Result:
 
 Used DURING operations like:
 
-```python id="cx3u2h"
+```python
 concat
 ```
 
 or:
 
-```python id="y0qkv8"
+```python
 append
 ```
 
@@ -254,7 +254,7 @@ Used AFTER dataframe already exists.
 
 This:
 
-```python id="q3wpmb"
+```python
 .sample(frac=1)
 ```
 
@@ -264,7 +264,7 @@ Example:
 
 Before:
 
-```text id="8br12n"
+```text
 0
 1
 2
@@ -273,7 +273,7 @@ Before:
 
 After shuffle:
 
-```text id="skg1mn"
+```text
 2
 0
 3
@@ -292,7 +292,7 @@ That surprises many beginners.
 
 Usually:
 
-```python id="y4nx5j"
+```python
 df = df.sample(frac=1).reset_index(drop=True)
 ```
 

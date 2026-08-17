@@ -523,13 +523,13 @@ Your generator does NOT return:
 
 It returns:
 
-```text id="rzpmsq"
+```text
 BATCH of images + BATCH of labels
 ```
 
 because:
 
-```python id="s4vvxy"
+```python
 batch_size=32
 ```
 
@@ -539,7 +539,7 @@ batch_size=32
 
 When you do:
 
-```python id="8md0dw"
+```python
 next(train_generator)
 ```
 
@@ -547,7 +547,7 @@ Keras produces ONE batch.
 
 Conceptually:
 
-```python id="x7v0qx"
+```python
 X_batch, y_batch = next(train_generator)
 ```
 
@@ -557,7 +557,7 @@ X_batch, y_batch = next(train_generator)
 
 Suppose dataframe contains:
 
-```text id="vwxv6z"
+```text
 age gender img
 25    1    a.jpg
 40    0    b.jpg
@@ -571,7 +571,7 @@ age gender img
 
 For:
 
-```text id="mfxy0i"
+```text
 25  1  a.jpg
 ```
 
@@ -581,13 +581,13 @@ Keras:
 
 ## Step 1 — reads image
 
-```text id="l5wq9s"
+```text
 a.jpg
 ```
 
 from:
 
-```python id="bb4m0y"
+```python
 folder_path
 ```
 
@@ -597,7 +597,7 @@ folder_path
 
 to:
 
-```python id="tk9kzi"
+```python
 (200, 200)
 ```
 
@@ -609,7 +609,7 @@ Image becomes tensor/array.
 
 RGB image shape:
 
-```python id="a7o1cw"
+```python
 (200, 200, 3)
 ```
 
@@ -623,13 +623,13 @@ because:
 
 ## Step 4 — rescales pixels
 
-```python id="vmbhhy"
+```python
 pixel / 255
 ```
 
 So values become:
 
-```python id="q5i3q7"
+```python
 0 → 0.0
 255 → 1.0
 ```
@@ -640,14 +640,14 @@ So values become:
 
 From:
 
-```text id="mw4q94"
+```text
 age=25
 gender=1
 ```
 
 label becomes roughly:
 
-```python id="bupjlwm"
+```python
 [25, 1]
 ```
 
@@ -657,7 +657,7 @@ label becomes roughly:
 
 Because:
 
-```python id="nuzl0m"
+```python
 batch_size=32
 ```
 
@@ -667,19 +667,19 @@ generator combines them.
 
 # Final X shape
 
-```python id="xgwg7z"
+```python
 X_batch.shape
 ```
 
 becomes:
 
-```python id="qj0hpo"
+```python
 (32, 200, 200, 3)
 ```
 
 Meaning:
 
-```text id="r3y60l"
+```text
 32 images
 each image:
     200 height
@@ -693,13 +693,13 @@ each image:
 
 ## First dimension → batch dimension
 
-```python id="pnqf4z"
+```python
 32
 ```
 
 means:
 
-```text id="m2jv7v"
+```text
 32 separate images
 ```
 
@@ -707,7 +707,7 @@ means:
 
 ## Remaining dimensions
 
-```python id="o0a6i7"
+```python
 (200,200,3)
 ```
 
@@ -719,13 +719,13 @@ describe ONE image.
 
 Think:
 
-```text id="2thdu0"
+```text
 32 image boxes stacked together
 ```
 
 like:
 
-```text id="cv6zq0"
+```text
 [
  image1(200x200x3),
  image2(200x200x3),
@@ -742,7 +742,7 @@ This is the labels batch.
 
 Since you used:
 
-```python id="qtf7md"
+```python
 y_col=['age','gender']
 ```
 
@@ -756,7 +756,7 @@ This depends slightly on TensorFlow version.
 
 Usually conceptually:
 
-```python id="jlwm6y"
+```python
 y_batch =
 [
    ages,
@@ -772,7 +772,7 @@ or dictionary-style internally.
 
 Suppose batch has 3 images:
 
-```text id="eg3brn"
+```text
 25 1
 40 0
 18 1
@@ -780,7 +780,7 @@ Suppose batch has 3 images:
 
 Then labels become conceptually:
 
-```python id="fy3zwi"
+```python
 ages     = [25, 40, 18]
 genders  = [1, 0, 1]
 ```
@@ -789,7 +789,7 @@ genders  = [1, 0, 1]
 
 # So actual batch looks conceptually like
 
-```python id="krtx7f"
+```python
 X_batch =
 [
  image1,
@@ -801,7 +801,7 @@ X_batch =
 
 and:
 
-```python id="cwuhwh"
+```python
 y_batch =
 {
    age: [25,40,18,...],
@@ -822,7 +822,7 @@ The filenames are only used to:
 
 After loading:
 
-```text id="v1lg7z"
+```text
 everything becomes tensors/arrays
 ```
 
@@ -832,19 +832,19 @@ everything becomes tensors/arrays
 
 Run:
 
-```python id="jlwm3h"
+```python
 X_batch, y_batch = next(train_generator)
 ```
 
 Then:
 
-```python id="8ruyij"
+```python
 print(X_batch.shape)
 ```
 
 Expected:
 
-```python id="wjlwm6"
+```python
 (32, 200, 200, 3)
 ```
 
@@ -852,7 +852,7 @@ Expected:
 
 Then:
 
-```python id="3w3q1f"
+```python
 print(type(y_batch))
 print(len(y_batch))
 ```
@@ -865,7 +865,7 @@ You will better understand actual structure.
 
 Your full dataset may contain:
 
-```text id="2pc2qd"
+```text
 20,000 images
 ```
 
@@ -873,7 +873,7 @@ But model training DOES NOT load all at once.
 
 Instead:
 
-```text id="ddzxki"
+```text
 32 images
 → weight update
 
@@ -886,7 +886,7 @@ next 32 images
 
 This is called:
 
-```text id="xjlwm3"
+```text
 mini-batch gradient descent
 ```
 
@@ -894,26 +894,26 @@ mini-batch gradient descent
 
 # One epoch means
 
-```text id="7i28wt"
+```text
 model has seen every training image once
 ```
 
 If:
 
-```python id="2xjlwm"
+```python
 20000 images
 batch_size = 32
 ```
 
 then:
 
-```python id="jlwm6x"
+```python
 20000 / 32 ≈ 625 batches
 ```
 
 So:
 
-```text id="jlwm6y"
+```text
 1 epoch ≈ 625 training steps
 ```
 
@@ -923,7 +923,7 @@ So:
 
 Your generator is basically doing:
 
-```text id="rjlwm6"
+```text
 read image
 → resize
 → normalize
